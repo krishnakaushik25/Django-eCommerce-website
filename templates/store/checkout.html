@@ -14,7 +14,7 @@
 <div class="card">
   <div class="card-body">
     <h4 class="card-title mb-4">Billing Address</h4>
-    <form action="#" method="POST">
+    <form action="{% url 'place_order' %}" method="POST">
       {% csrf_token %}
       <div class="form-row">
         <div class="col form-group">
