@@ -2,13 +2,17 @@ asgiref==3.2.10
 botocore==1.20.36
 certifi==2020.12.5
 chardet==4.0.0
+charset-normalizer==2.0.2
+da-vinci==0.3.0
 Django==3.0.6
 django-admin-honeypot==1.1.0
 django-admin-thumbnails==0.2.6
 django-session-timeout==0.1.0
+gunicorn==20.1.0
 idna==2.10
 jmespath==0.10.0
 pillow==8.3.1
+psycopg2-binary==2.8.6
 python-dateutil==2.8.1
 python-decouple==3.4
 pytz==2020.1
