@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)  # True
 
-ALLOWED_HOSTS = ['ecommerce-greatkart-env.eba-di8pkxed.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['simplekart-env.eba-eweha2je.eu-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -111,8 +111,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
