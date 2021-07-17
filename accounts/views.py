@@ -14,7 +14,6 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 
-
 from carts.views import _cart_id
 from carts.models import Cart, CartItem
 import requests
@@ -30,11 +29,9 @@ def register(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             username = email.split("@")[0]
-            user = Account.objects.create_user(
-                first_name=first_name, last_name=last_name, email=email, username=username, password=password)
+            user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
             user.phone_number = phone_number
             user.save()
-
 
             # Create a user profile
             profile = UserProfile()
@@ -54,14 +51,13 @@ def register(request):
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
-            # messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email address [k.kaushik25@gmail.com]. Please verify it.')
-            return redirect('/accounts/login/?command=verification&email=' + email)
+            # messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email address [rathan.kumar@gmail.com]. Please verify it.')
+            return redirect('/accounts/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()
     context = {
         'form': form,
     }
-
     return render(request, 'accounts/register.html', context)
 
 
@@ -75,8 +71,7 @@ def login(request):
         if user is not None:
             try:
                 cart = Cart.objects.get(cart_id=_cart_id(request))
-                is_cart_item_exists = CartItem.objects.filter(
-                    cart=cart).exists()
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
                 if is_cart_item_exists:
                     cart_item = CartItem.objects.filter(cart=cart)
 
@@ -131,7 +126,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 
-@login_required(login_url='login')
+@login_required(login_url = 'login')
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are logged out.')
@@ -148,25 +143,25 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.success(
-            request, 'Congratulations! Your account is activated.')
+        messages.success(request, 'Congratulations! Your account is activated.')
         return redirect('login')
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
 
 
-@login_required(login_url='login')
+@login_required(login_url = 'login')
 def dashboard(request):
-    orders = Order.objects.order_by(
-        '-created_at').filter(user_id=request.user.id, is_ordered=True)
+    orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
     orders_count = orders.count()
+
     userprofile = UserProfile.objects.get(user_id=request.user.id)
     context = {
         'orders_count': orders_count,
         'userprofile': userprofile,
     }
     return render(request, 'accounts/dashboard.html', context)
+
 
 def forgotPassword(request):
     if request.method == 'POST':
@@ -187,8 +182,7 @@ def forgotPassword(request):
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.success(
-                request, 'Password reset email has been sent to your email address.')
+            messages.success(request, 'Password reset email has been sent to your email address.')
             return redirect('login')
         else:
             messages.error(request, 'Account does not exist!')
@@ -230,6 +224,7 @@ def resetPassword(request):
     else:
         return render(request, 'accounts/resetPassword.html')
 
+
 @login_required(login_url='login')
 def my_orders(request):
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
@@ -238,13 +233,13 @@ def my_orders(request):
     }
     return render(request, 'accounts/my_orders.html', context)
 
+
 @login_required(login_url='login')
 def edit_profile(request):
     userprofile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(
-            request.POST, request.FILES, instance=userprofile)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
