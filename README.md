@@ -82,9 +82,9 @@ Major frameworks and tools that are used in the project.
    ```sh
    git clone https://github.com/krishnakaushik25/Django-eCommerce-website.git
    ```
-4. Install all packages ( all dependencies are mentioned in requirements.txt ).
+4.Install all packages ( all dependencies are mentioned in requirements.txt)
    ```sh
-   pip install -r requirements.txt
+ pip install -r requirements.txt
    ```
 5. Create a .env file and fill all the fields mentioned in the .env-sample(secure enough for saving secret values)
 
