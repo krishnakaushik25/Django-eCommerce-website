@@ -5,7 +5,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/krishnakaushik25/Django-eCommerce-website">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="imgs/logo_pro.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Real World eCommerce app using Python and Django Framework</h3>
