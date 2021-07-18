@@ -109,7 +109,7 @@ Major frameworks and tools that are used in the project.
 - Orders & Order Number Generation
 - Review and Rating System
 - Product Gallery with Unlimited Images
-- Context Processors & Product Details
+- My account functionalities for the customer who can easily edit his profile, profile pictures, change his account password, and also manage his orders.
 
 
 
