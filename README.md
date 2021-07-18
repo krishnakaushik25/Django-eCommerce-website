@@ -1,4 +1,4 @@
-# Django eCommerce website using RDS Postgres and deployed on deployed on Amazon AWS
+# Django eCommerce website using RDS Postgres and deployed on Amazon AWS
 
 
 <!-- PROJECT LOGO -->
