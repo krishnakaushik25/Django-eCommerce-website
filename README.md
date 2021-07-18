@@ -132,5 +132,5 @@ Any contributions you make are **greatly appreciated**.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: img/esite.png
+[product-screenshot1]: img/esite.png
 [product-screenshot2]: img/esite2.png
