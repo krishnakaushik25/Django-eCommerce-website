@@ -1,4 +1,4 @@
-# MERNG-Social-Media-APP
+# Django eCommerce website using RDS Postgres and deployed on deployed on Amazon AWS
 
 
 <!-- PROJECT LOGO -->
@@ -58,9 +58,12 @@ The list of resources that I used for building this project are listed in the ac
 
 ### Built With
 
-Major frameworks that are used in the project.
+Major frameworks and tools that are used in the project.
 * [Django](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
 * [Python](https://www.python.org/)
+* [PostgreSQL](https://aws.amazon.com/rds/postgresql/)
+* [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
+* [Amazon S3](https://aws.amazon.com/s3/)
 
 
 
