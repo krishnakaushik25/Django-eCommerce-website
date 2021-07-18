@@ -3,6 +3,7 @@ from .models import Product, ReviewRating, ProductGallery
 from category.models import Category
 from carts.models import CartItem
 from django.db.models import Q
+
 from carts.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
@@ -10,10 +11,11 @@ from .forms import ReviewForm
 from django.contrib import messages
 from orders.models import OrderProduct
 
-# Create your views here.
+
 def store(request, category_slug=None):
     categories = None
     products = None
+
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=categories, is_available=True)
@@ -27,17 +29,21 @@ def store(request, category_slug=None):
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
+
     context = {
-        'products':  paged_products,
+        'products': paged_products,
         'product_count': product_count,
-        }
+    }
     return render(request, 'store/store.html', context)
+
+
 def product_detail(request, category_slug, product_slug):
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
+
     if request.user.is_authenticated:
         try:
             orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
@@ -48,6 +54,7 @@ def product_detail(request, category_slug, product_slug):
 
     # Get the reviews
     reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
+
     # Get the product gallery
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
 
@@ -60,6 +67,7 @@ def product_detail(request, category_slug, product_slug):
     }
     return render(request, 'store/product_detail.html', context)
 
+
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
@@ -71,6 +79,7 @@ def search(request):
         'product_count': product_count,
     }
     return render(request, 'store/store.html', context)
+
 
 def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')

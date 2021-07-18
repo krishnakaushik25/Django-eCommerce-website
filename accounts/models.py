@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+
 # Create your models here.
 
 class MyAccountManager(BaseUserManager):
@@ -37,6 +39,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
+
 class Account(AbstractBaseUser):
     first_name      = models.CharField(max_length=50)
     last_name       = models.CharField(max_length=50)
@@ -68,6 +71,8 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, add_label):
         return True
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     address_line_1 = models.CharField(blank=True, max_length=100)

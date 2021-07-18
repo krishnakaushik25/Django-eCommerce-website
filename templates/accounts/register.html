@@ -8,7 +8,7 @@
 <!-- ============================ COMPONENT REGISTER   ================================= -->
 	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
       <article class="card-body">
-         {% include 'includes/alerts.html' %}
+    {% include 'includes/alerts.html' %}
 		<header class="mb-4"><h4 class="card-title">Sign up</h4></header>
 		<form action="{% url 'register' %}" method="POST">
       {% csrf_token %}
@@ -17,38 +17,40 @@
 				<div class="form-row">
 					<div class="col form-group">
 						<label>First name</label>
-					  {{ form.first_name }}
+					  	{{ form.first_name }}
 					</div> <!-- form-group end.// -->
 					<div class="col form-group">
 						<label>Last name</label>
-					  {{ form.last_name }}
+					  	{{ form.last_name }}
 					</div> <!-- form-group end.// -->
 				</div> <!-- form-row end.// -->
-        <div class="form-row">
-  					<div class="form-group col-md-6">
-  					  <label>Email Address</label>
-  					  {{form.email}}
-  					</div> <!-- form-group end.// -->
-  					<div class="form-group col-md-6">
-  					  <label>Phone Number</label>
-  					  {{form.phone_number}}
-  					</div> <!-- form-group end.// -->
-  				</div> <!-- form-row.// -->
-  				<div class="form-row">
-  					<div class="form-group col-md-6">
-  						<label>Create password</label>
-  					    {{ form.password }}
-  					</div> <!-- form-group end.// -->
-  					<div class="form-group col-md-6">
-  						<label>Repeat password</label>
-              {{form.confirm_password}}
-  					</div> <!-- form-group end.// -->
-  				</div>
-  			    <div class="form-group">
-  			        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
-  			    </div> <!-- form-group// -->
-            {{ form.email.errors }}
-            {{ form.non_field_errors }}
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+					  <label>Email Address</label>
+					  {{form.email}}
+					</div> <!-- form-group end.// -->
+					<div class="form-group col-md-6">
+					  <label>Phone Number</label>
+					  {{form.phone_number}}
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row.// -->
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label>Create password</label>
+					    {{ form.password }}
+					</div> <!-- form-group end.// -->
+					<div class="form-group col-md-6">
+						<label>Repeat password</label>
+            {{form.confirm_password}}
+					</div> <!-- form-group end.// -->
+				</div>
+			    <div class="form-group">
+			        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+			    </div> <!-- form-group// -->
+      {{ form.email.errors }}
+      {{ form.non_field_errors }}
 			</form>
 		</article><!-- card-body.// -->
     </div> <!-- card .// -->

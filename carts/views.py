@@ -3,12 +3,16 @@ from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+from django.http import HttpResponse
+
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
         cart = request.session.create()
     return cart
+
 def add_cart(request, product_id):
     current_user = request.user
     product = Product.objects.get(id=product_id) #get the product
@@ -144,6 +148,8 @@ def remove_cart(request, product_id, cart_item_id):
     except:
         pass
     return redirect('cart')
+
+
 def remove_cart_item(request, product_id, cart_item_id):
     product = get_object_or_404(Product, id=product_id)
     if request.user.is_authenticated:
@@ -153,6 +159,7 @@ def remove_cart_item(request, product_id, cart_item_id):
         cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
     cart_item.delete()
     return redirect('cart')
+
 
 def cart(request, total=0, quantity=0, cart_items=None):
     try:
@@ -179,6 +186,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'grand_total': grand_total,
     }
     return render(request, 'store/cart.html', context)
+
 
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, cart_items=None):
