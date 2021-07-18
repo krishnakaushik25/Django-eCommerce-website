@@ -86,6 +86,7 @@ Major frameworks and tools that are used in the project.
    ```sh
  pip install -r requirements.txt
    ```
+   
 5. Create a .env file and fill all the fields mentioned in the .env-sample(secure enough for saving secret values)
 
 6.Run the development server
